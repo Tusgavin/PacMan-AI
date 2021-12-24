@@ -1,0 +1,38 @@
+class: "GraphSearchTest"
+algorithm: "greedySearch"
+
+diagram: """
+ 2          1           0
+*A -------> B -------> [G]
+ |                       
+ |                      10
+ \-------------------> [G2]
+
+A is the start state, G and G2 are the goal states.  Arrows mark 
+possible state transitions. The number next to the states is 
+the heuristic value of that state. We purposely set one of the 
+goal states with a high heuristic value to trick the greedy 
+search into passing through B and reaching the other goal state.
+
+If you fail this test case, you may be incorrectly testing if a 
+node is a goal before adding it into the queue, instead of testing 
+when you remove the node from the queue. See the algorithm 
+pseudocode in lecture.
+"""
+
+graph: """
+start_state: A
+goal_states: G G2
+A 0:A->B B 1.0
+A 1:A->G2 G2 1.0
+B 0:B->G G 1.0
+"""
+heuristic: """
+A 2.0
+B 1.0
+G 0.0
+G2 10.0
+"""
+# We only care about the solution, not the expansion order.
+exactExpansionOrder: "False"
+
